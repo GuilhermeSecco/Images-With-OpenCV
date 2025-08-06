@@ -4,21 +4,25 @@ import cv2
 
 img = cv2.imread("Kitchen.png", cv2.IMREAD_GRAYSCALE)
 img2 = img.copy()
+print(img.shape)
 for i in range(img.shape[0]):
     for j in range(img.shape[1]):
-        if img[i,j] < 155:
-            img[i,j] = 0
-        else:
-            img[i,j] = 255
-cv2.imshow("Kitchen", img)
+            if img[i,j] < 128:
+                img[i,j] = 0
+            else:
+                img[i,j] = 255
+cv2.imshow("Black and White Kitchen", img)
 cv2.waitKey(0)
+cv2.destroyAllWindows()
+cv2.imwrite("BW_Kitchen.png", img)
 
 for i in range(img2.shape[0]):
     for j in range(img2.shape[1]):
         img2[i,j] = -img2[i,j]
-cv2.imshow("Kitchen", img2)
+cv2.imshow("Negative Kitchen", img2)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+cv2.imwrite("Negative_Kitchen.png", img2)
 
 road = cv2.imread("Road.png", cv2.IMREAD_COLOR)
 print(road.shape)
